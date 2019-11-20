@@ -9,9 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var memoryNumber: UILabel!
+    
     
     var number : Int = 0
     var resetPressed = false
@@ -36,12 +38,80 @@ class ViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var multiplyButton: UIButton!
     @IBOutlet weak var divideButton: UIButton!
+    @IBOutlet weak var buttonEqual: UIButton!
+    @IBOutlet weak var buttonReset: UIButton!
+    @IBOutlet weak var buttonPlusMinus: UIButton!
+    
+    @IBOutlet weak var buttonZero: UIButton!
+    @IBOutlet weak var buttonOne: UIButton!
+    @IBOutlet weak var buttonTwo: UIButton!
+    @IBOutlet weak var buttonThree: UIButton!
+    @IBOutlet weak var buttonFour: UIButton!
+    @IBOutlet weak var buttonFive: UIButton!
+    @IBOutlet weak var buttonSix: UIButton!
+    @IBOutlet weak var buttonSeven: UIButton!
+    @IBOutlet weak var buttonEight: UIButton!
+    @IBOutlet weak var buttonNine: UIButton!
+    @IBOutlet weak var buttonDecimal: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        resultLabel.text = String(0)
+        resultLabel.text = ""
         resetButton()
+        
+        plusButton.layer.cornerRadius = plusButton.frame.size.height/4
+        minusButton.layer.cornerRadius = plusButton.frame.size.height/4
+        multiplyButton.layer.cornerRadius = plusButton.frame.size.height/4
+        divideButton.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonEqual.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonReset.layer.cornerRadius = plusButton.frame.size.height/4
+        
+        buttonZero.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonOne.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonTwo.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonThree.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonFour.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonFive.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonSix.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonSeven.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonEight.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonNine.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonDecimal.layer.cornerRadius = plusButton.frame.size.height/4
+        buttonPlusMinus.layer.cornerRadius = plusButton.frame.size.height/4
+        
+        buttonZero.layer.borderWidth = 1
+        buttonZero.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonZero.backgroundColor = UIColor.darkGray
+        buttonOne.layer.borderWidth = 1
+        buttonOne.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonOne.backgroundColor = UIColor.darkGray
+        buttonTwo.layer.borderWidth = 1
+        buttonTwo.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonTwo.backgroundColor = UIColor.darkGray
+        buttonThree.layer.borderWidth = 1
+        buttonThree.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonThree.backgroundColor = UIColor.darkGray
+        buttonFour.layer.borderWidth = 1
+        buttonFour.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonFour.backgroundColor = UIColor.darkGray
+        buttonFive.layer.borderWidth = 1
+        buttonFive.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonFive.backgroundColor = UIColor.darkGray
+        buttonSix.layer.borderWidth = 1
+        buttonSix.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonSix.backgroundColor = UIColor.darkGray
+        buttonSeven.layer.borderWidth = 1
+        buttonSeven.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonSeven.backgroundColor = UIColor.darkGray
+        buttonEight.layer.borderWidth = 1
+        buttonEight.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonEight.backgroundColor = UIColor.darkGray
+        buttonNine.layer.borderWidth = 1
+        buttonNine.layer.borderColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        self.buttonNine.backgroundColor = UIColor.darkGray
+        buttonDecimal.backgroundColor = UIColor.init(red: 1, green: 0.83, blue: 0.36, alpha: 1)
+        buttonPlusMinus.backgroundColor = UIColor.init(red: 1, green: 0.83, blue: 0.36, alpha: 1)
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -62,7 +132,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func decimalPressed(_ sender: Any) {
-        if flagOfResult == 1 && resultLabel.text != "0"{
+        if flagOfResult == 1{
+            flagOfResult = 0
             memoryNumber.text = ""
             resultLabel.text = "0"
             numberShowed = resultLabel.text!
@@ -139,7 +210,7 @@ class ViewController: UIViewController {
                 numberShowed.insert(".", at: indic)
             }
             memoryNumberCalculate = numberShowed
-            resultLabel.text = "0"
+            resultLabel.text = ""
             numberShowed = ""
             numberCalculate = ""
         }else{
@@ -286,7 +357,6 @@ class ViewController: UIViewController {
         default:
             return ""
         }
-        print(calculationResult)
         let tempVar = Int(calculationResult)
         if calculationResult.truncatingRemainder(dividingBy: Double(tempVar)) > 0{
             return String(calculationResult)
