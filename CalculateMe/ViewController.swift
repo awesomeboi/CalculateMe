@@ -57,9 +57,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        resultLabel.text = ""
+        resultLabel.text = "0"
         resetButton()
         
+        //Design Part Start
         plusButton.layer.cornerRadius = plusButton.frame.size.height/4
         minusButton.layer.cornerRadius = plusButton.frame.size.height/4
         multiplyButton.layer.cornerRadius = plusButton.frame.size.height/4
@@ -112,6 +113,7 @@ class ViewController: UIViewController {
         self.buttonNine.backgroundColor = UIColor.darkGray
         buttonDecimal.backgroundColor = UIColor.init(red: 1, green: 0.83, blue: 0.36, alpha: 1)
         buttonPlusMinus.backgroundColor = UIColor.init(red: 1, green: 0.83, blue: 0.36, alpha: 1)
+        //Design Part End
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -122,6 +124,10 @@ class ViewController: UIViewController {
             memoryNumber.text = ""
         }
         number = sender.tag
+        if resultLabel.text == "0"{
+            numberShowed = ""
+            numberCalculate = ""
+        }
         visnumber = String(number)
         calcnumber = String(number)
         if resetPressed == false{
@@ -350,7 +356,6 @@ class ViewController: UIViewController {
                 memoryNumber.text = ""
                 resultLabel.text = "Err"
                 return "Err"
-                break
             }else{
                 calculationResult = Double(firstNumber)! / Double(secondNumber)!
             }
@@ -358,10 +363,15 @@ class ViewController: UIViewController {
             return ""
         }
         let tempVar = Int(calculationResult)
-        if calculationResult.truncatingRemainder(dividingBy: Double(tempVar)) > 0{
+        if (calculationResult < 1) && (-1 < calculationResult) {
             return String(calculationResult)
-        }else{
-            return String(Int(calculationResult))
+        }
+        else{
+            if calculationResult.truncatingRemainder(dividingBy: Double(tempVar)) > 0{
+                return String(calculationResult)
+            }else{
+                return String(Int(calculationResult))
+            }
         }
     }
 }
